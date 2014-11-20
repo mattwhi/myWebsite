@@ -10,10 +10,13 @@ module.exports = function (grunt) {
 			files: [{
 				dot:true,
 				src: [
-				'./dist/*',
-				'!dist/.git*'
+				'../mattwhi.github.io/*',
+				'!../mattwhi.github.io/.git*'
 				]
-			}]	
+			}],
+			options: {
+				force:true,
+			}	
 		}
 	};
 	//Clean the html file and send to distribution folder
@@ -28,8 +31,11 @@ module.exports = function (grunt) {
 			files: [{
 				expand: true,
 				cwd: './',
-				src: '{,*/}*.html',
-				dest: './dist'
+				src: [
+					'{,*/}*.html',
+					'!dist/{,*/}*.html'
+				],
+				dest: '../mattwhi.github.io/'
 				}]
 		}
 	};
@@ -41,7 +47,7 @@ module.exports = function (grunt) {
 				  expand: true,
 				  cwd: './',
 				  src: ['./css/{,*/}*.css'],
-				  dest: './dist/',
+				  dest: '../mattwhi.github.io/',
 				  ext: '.min.css'
 				}]
 
@@ -59,7 +65,7 @@ module.exports = function (grunt) {
 				expand: true,
 				dot: true,
 				cwd: './',
-				dest: './dist',
+				dest: '../mattwhi.github.io/',
 				src: [
 					'./img/{,*/}*.png',
 					'./img/{,*/}*.jpg'
@@ -69,22 +75,22 @@ module.exports = function (grunt) {
 	};
 	config['useminPrepare'] = {
 		options: {
-			dest: 'dist',
+			dest: '../mattwhi.github.io/',
 			},
 			html: './index.html'
 		};
 	
 	config['usemin'] = {
 		options: {
-			dirs: ['./dist'],
+			dirs: ['../mattwhi.github.io/'],
 			},
-			html: ['./dist/{,*/}*.html']
+			html: ['../mattwhi.github.io/{,*/}*.html']
 		};
 	
 	config['rev'] = {
 		files: {
 			src: [
-				'./dist/scripts/{,*/}*.js',	
+				'../mattwhi.github.io/scripts/{,*/}*.js',	
 				]
 			}
 		};
