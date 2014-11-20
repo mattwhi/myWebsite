@@ -53,11 +53,41 @@ module.exports = function (grunt) {
 
 		}
 	};
-	config['uglify'] = {
-		options: {
-			mangle: false,
+	config['jshint'] = {
+		concat: {
+			dist: {
+			src: ['./js/{,*/}*.js'],
+			dest: '../mattwhi.github.io/js/myJavaScript.js',
+				}
 			},
+		jshint: {
+			beforeconcat: ['./js/{,*/}*.js'],
+    		afterconcat: ['../mattwhi.github.io/js/myJavaScript.js']
+		}
 	};
+	config['uglify'] = {
+		concat: {
+			options: {
+				mangle: false,
+				beutify: true
+				},
+			files: {
+			'../mattwhi.github.io/js/myJavaScriptjQuery.js' : ['./js/{,*/}*.js'],
+			'js/myJavaScriptjQuery.js' : ['./js/{,*/}*.js']
+			}
+		}
+	};
+	//config['uglify'] = {
+		//concat: {
+			//options: {
+				//mangle: false,
+				//beutify: true
+				//},
+			//files: {
+			//'../mattwhi.github.io/js/myJavaScriptBeutifyjQuery.js' : ['./js/{,*/}*.js']
+			//}
+		//}
+	//};
 	//Copy over any new images to the distribution folder
 	config['copy'] = {
 		dist: {
@@ -121,6 +151,7 @@ module.exports = function (grunt) {
 	'useminPrepare',
 	'htmlmin',
 	'cssmin',
+	'jshint',
 	'uglify',
 	'rev',
 	'compass',
